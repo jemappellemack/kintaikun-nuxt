@@ -11,7 +11,7 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">勤怠くん</a>
+          <NuxtLink class="navbar-item" to="/">勤怠くん</NuxtLink>
           <NuxtLink class="navbar-item" to="/timestamp">打刻</NuxtLink>
           <NuxtLink class="navbar-item" to="/works">一覧</NuxtLink>
         </div>
