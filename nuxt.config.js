@@ -1,7 +1,13 @@
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+        router: {
+          base: '/kintaikun-nuxt/'
+        }
+      } : {}
+
 export default {
+  ...routerBase,
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
-
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'kintaikun-nuxt',
