@@ -1,10 +1,11 @@
 {
   "name": "kintaikun-nuxt",
   "version": "1.0.0",
+  "homepage": "https://jemappellemack.github.io/kintaikun-nuxt/",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
+    "build": "rm -r docs && nuxt-ts build && mv dist docs",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate"
   },
