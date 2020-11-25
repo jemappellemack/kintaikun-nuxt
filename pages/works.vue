@@ -1,5 +1,6 @@
 <template>
   <div>
+    <KintaiApplyModal :dateString="dateString()" :showModal="showModal()" @close="closeKintaiApplyModal"/>
     <Navigation/>
     <div class="container">
       <div class="columns mt-5">
@@ -54,8 +55,10 @@
                 <td>
                   {{ date.week === 'Sa' || date.week === 'Su' ? '0:00' : '1:00' }}
                 </td>
-                <td>
+                <td v-if="!showKintaiApplyModalButton(date.dateString)">
+                  <button class="button is-link" @click="openKintaiApplyModal(date.dateString)" block>申請</button>
                 </td>
+                <td v-if="showKintaiApplyModalButton(date.dateString)">申請中</td>
               </tr>
             </tbody>
           </table>
@@ -146,10 +149,31 @@ export default defineComponent({
       return obj.duration ? `${obj.duration.hours}:${obj.duration.minutes?.toString().padStart(2,'0')}` : null
     }
 
-    let showKintaiApplyModal = false;
     const openKintaiApplyModal = (dateString: string) => {
-      showKintaiApplyModal = true;
-      console.log(showKintaiApplyModal,dateString);
+      state.setKintaiApplyModalState({
+        showModal: true,
+        dateString
+      })
+    }
+
+    const closeKintaiApplyModal = () => {
+      state.setKintaiApplyModalState({
+        showModal: false,
+        dateString: ''
+      })
+    }
+
+    const showKintaiApplyModalButton = (dateString: string) => {
+      const obj = state.getKintaiCalendarState(dateString)
+      return obj.status ? true : false
+    }
+
+    const dateString = ()=> {
+      return state.getKintaiApplyModalState().dateString
+    }
+
+    const showModal = ()=> {
+      return state.getKintaiApplyModalState().showModal
     }
 
     const calendars = computed(() => {
@@ -173,16 +197,10 @@ export default defineComponent({
       return (difference > 0) ? false : true
     })
 
-    const showKintaiApplyModalButton = (dateString: string) => {
-      const obj = state.getKintaiCalendarState(dateString)
-      console.log(obj)
-      return obj.status ? true : false
-    }
-
    return {
-      state, yearMonth, goBackMonth, goNextMonth,
-      calendars, startTime, endTime, workingTime,
-      showBackButton, showNextButton, downloadAsExcelFile
+      state, downloadAsExcelFile, goBackMonth, goNextMonth, startTime, endTime, workingTime,
+      openKintaiApplyModal, closeKintaiApplyModal, showKintaiApplyModalButton,
+      dateString, showModal, calendars, yearMonth, showBackButton, showNextButton
     }
   }
 })
