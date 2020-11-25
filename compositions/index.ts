@@ -1,5 +1,5 @@
 import { toRefs, InjectionKey, reactive } from '@nuxtjs/composition-api'
-import { IState, IKintaiCalendarState, IKintaiCalendar } from '~/interfaces'
+import { IState, IKintaiCalendarState, IKintaiCalendar, IKintaiApplyModalState } from '~/interfaces'
 import format from 'date-fns/format';
 import startOfMonth from 'date-fns/startOfMonth'
 import eachDayOfInterval from 'date-fns/eachDayOfInterval'
@@ -50,7 +50,11 @@ export const useGlobalState = () => {
 
   const globalState = reactive<IState>({
     kintaiCalendarState: dateObj,
-    targetCalendarMonthState: new Date()
+    targetCalendarMonthState: new Date(),
+    kintaiApplyModalState: {
+      showModal: false,
+      dateString: ''
+    }
   })
 
   const setKintaiCalendarState = ( dateString: string, stateValue: IKintaiCalendar ) => {
@@ -69,12 +73,22 @@ export const useGlobalState = () => {
    return globalState.targetCalendarMonthState;
   }
 
+  const setKintaiApplyModalState = ( stateValue: IKintaiApplyModalState ) => {
+    globalState.kintaiApplyModalState = stateValue
+  }
+
+  const getKintaiApplyModalState = () => {
+   return globalState.kintaiApplyModalState;
+  }
+
   return {
     ...toRefs(globalState),
     getKintaiCalendarState,
     setKintaiCalendarState,
     setTargetCalendarMonthState,
-    getTargetCalendarMonthState
+    getTargetCalendarMonthState,
+    setKintaiApplyModalState,
+    getKintaiApplyModalState
   }
 }
 
