@@ -5,9 +5,11 @@
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "rm -r docs && nuxt-ts build && mv dist docs",
+    "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate"
+    "generate": "rm -r docs && nuxt-ts generate && mv dist docs",
+    "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt-ts build",
+    "generate:gh-pages": "rm -r docs && DEPLOY_ENV=GH_PAGES nuxt-ts generate && mv dist docs"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
