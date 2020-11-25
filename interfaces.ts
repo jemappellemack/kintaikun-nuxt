@@ -1,6 +1,7 @@
 export interface IState {
   kintaiCalendarState: IKintaiCalendarState,
-  targetCalendarMonthState: Date
+  targetCalendarMonthState: Date,
+  kintaiApplyModalState: IKintaiApplyModalState
 }
 
 export interface IKintaiCalendar {
@@ -30,3 +31,8 @@ export interface ICalendar {
   week:string;
   dateString:string;
 } 
+
+export interface IKintaiApplyModalState {
+ showModal: boolean;
+ dateString: string;
+}
