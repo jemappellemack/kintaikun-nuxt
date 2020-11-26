@@ -11,16 +11,16 @@
                 <p class="subtitle mt-4">{{ todayJp }}</p>
                 <p class="title mt-4"><Clock/></p>
                 <br>
-                <p class="mt-4">出 勤 {{ startAt }}</p>
-                <p class="mt-4">退 勤 {{ endAt }}</p>
-                <p class="mt-4">時 間 {{ workingTime }}</p>
+                <p class="mt-4" data-cy="startTime">出 勤 {{ startAt }}</p>
+                <p class="mt-4" data-cy="endTime">退 勤 {{ endAt }}</p>
+                <p class="mt-4" data-cy="workingTime">時 間 {{ workingTime }}</p>
                 <br>
                 <div class="field">
                   <div class="control mt-4">
-                    <button class="button is-link" v-bind:disabled="disabledStartAtButton" @click="onClickStartTime">出　勤</button>
+                    <button class="button is-link" v-bind:disabled="disabledStartAtButton" @click="onClickStartTime" data-cy="onClickStartTime">出　勤</button>
                   </div>
                   <div class="control mt-4 mb-4">
-                    <button class="button is-link is-light" v-bind:disabled="disabledEndAtButton" @click="onClickEndTime">退　勤</button>
+                    <button class="button is-link is-light" v-bind:disabled="disabledEndAtButton" @click="onClickEndTime" data-cy="onClickEndTime">退　勤</button>
                   </div>
                 </div>
               </div>
