@@ -43,6 +43,7 @@ https://jemappellemack.github.io/kintaikun-nuxt/
 - date-fns　 日付計算
 - xlsx　     Excelファイルの読み書き
 - file-saver ファイル保存
+- cypress    E2Eテスト
 
 <br>
 
